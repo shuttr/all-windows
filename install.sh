@@ -1,8 +1,8 @@
 #!/bin/sh
 
 BASEDIR=.local/share/gnome-shell/extensions
-DIR=all-windows@ezix.org
-URL=https://github.com/lyonel/all-windows.git
+DIR=all-windows-plus@randallman.net
+URL=https://github.com/shuttr/all-windows.git
 
 which git 2> /dev/null > /dev/null || ( echo Could not find Git ; exit 1 )
 which gnome-shell 2> /dev/null > /dev/null || ( echo Could not find GNOME Shell ; exit 1 )
@@ -17,7 +17,7 @@ case $GSVERSION in
 	BRANCH="--branch 3.6-3.8"
 	;;
 *)
-	BRANCH=""
+	BRANCH="work"
 	;;
 esac
 
