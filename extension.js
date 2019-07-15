@@ -7,6 +7,7 @@ const Panel = imports.ui.panel;
 const Meta = imports.gi.Meta;
 const Shell = imports.gi.Shell;
 
+const Self = imports.misc.extensionUtils.getCurrentExtension();
 const KeyManager = Self.imports.keymanager;;
  
 const WindowList = new Lang.Class({
