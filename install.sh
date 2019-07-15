@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -x
 
 BASEDIR=.local/share/gnome-shell/extensions
 DIR=all-windows-plus@randallman.net
@@ -11,14 +13,14 @@ GSVERSION=$(gnome-shell --version | awk '{ print $3; }')
 
 case $GSVERSION in
 3.6|3.6.*)
-	BRANCH="--branch 3.6-3.8"
-	;;
+  BRANCH="--branch 3.6-3.8"
+  ;;
 3.8|3.8.*)
-	BRANCH="--branch 3.6-3.8"
-	;;
+  BRANCH="--branch 3.6-3.8"
+  ;;
 *)
-	BRANCH="work"
-	;;
+  BRANCH="work"
+  ;;
 esac
 
 cd $HOME
@@ -29,17 +31,17 @@ cd ${BASEDIR} || ( echo Could not change to ${BASEDIR} ; exit 2 )
 echo Using ${HOME}/${BASEDIR}/${DIR}
 
 if [ -d ${DIR}/.git ]; then
-	echo Already installed, updating...
-	cd ${DIR}
-	git pull
+  echo Already installed, updating...
+  cd ${DIR}
+  git pull
 else
-	if [ -d ${DIR} ]; then
-		echo Found a previous installation.
-		echo If you are sure you want to replace it, please delete this folder and retry.
-		exit 4
-	else
-		git clone ${BRANCH} ${URL} ${DIR} || exit 3
-	fi
+  if [ -d ${DIR} ]; then
+    echo Found a previous installation.
+    echo If you are sure you want to replace it, please delete this folder and retry.
+    exit 4
+  else
+    git clone -b ${BRANCH} ${URL} ${DIR} || exit 3
+  fi
 fi
 
 echo Restarting GNOME-Shell
